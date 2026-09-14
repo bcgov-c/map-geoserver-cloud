@@ -60,7 +60,7 @@ test.describe(envDescription + " routes", () => {
             await expect(response.status()).toBe(200);
         }
         catch (error) {
-            expect(error.message).toContain("page.goto: net::ERR_ABORTED");
+            expect(error.message).toContain("page.goto: Download is starting");
         }
     });
 
@@ -74,7 +74,7 @@ test.describe(envDescription + " routes", () => {
             await expect(response.status()).toBe(200);
         }
         catch (error) {
-            expect(error.message).toContain("page.goto: net::ERR_ABORTED");
+            expect(error.message).toContain("page.goto: Download is starting");
         }
     });
 
