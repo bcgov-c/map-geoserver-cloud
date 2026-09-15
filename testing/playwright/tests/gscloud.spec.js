@@ -28,6 +28,55 @@ test.describe(envDescription + " routes", () => {
 
     // This query string has the "layers" parameter.
     let queryString = "?STYLES=&layers=pub%3AWHSE_LEGAL_ADMIN_BOUNDARIES.ABMS_COUNTIES_SP&WIDTH=400&service=wms&FORMAT=image%2Fpng&request=getmap&HEIGHT=266&SRS=EPSG%3A3005&version=1.1.1&BBOX=794280.590063033%2C264941.75762325%2C1636273.15489024%2C888458.117582758";
+    let noLayerQueryString = "?STYLES=&WIDTH=400&service=wms&FORMAT=image%2Fpng&request=getmap&HEIGHT=266&SRS=EPSG%3A3005&version=1.1.1&BBOX=794280.590063033%2C264941.75762325%2C1636273.15489024%2C888458.117582758";
+
+    test("/geo/pub/[layername]/wms", async ({ page }) => {
+
+        let path = "/geo/pub/WHSE_LEGAL_ADMIN_BOUNDARIES.ABMS_COUNTIES_SP/wms"
+        let requestUrl = domain + path + queryString;
+    
+        let response = await page.goto(requestUrl);
+        await expect(response.status()).toBe(200);
+        await expect(page).toHaveScreenshot();
+    });
+
+    test("/geo/pub/[layername]/ows", async ({ page }) => {
+
+        let path = "/geo/pub/WHSE_LEGAL_ADMIN_BOUNDARIES.ABMS_COUNTIES_SP/ows"
+        let requestUrl = domain + path + queryString;
+    
+        let response = await page.goto(requestUrl);
+        await expect(response.status()).toBe(200);
+        await expect(page).toHaveScreenshot();
+    });
+
+    test("/geo/pub/[layername]/wms NO &layers=", async ({ page }) => {
+
+        let path = "/geo/pub/WHSE_LEGAL_ADMIN_BOUNDARIES.ABMS_COUNTIES_SP/wms"
+        let requestUrl = domain + path + noLayerQueryString;
+        
+        try {
+            let response = await page.goto(requestUrl);
+            await expect(response.status()).toBe(200);
+        }
+        catch (error) {
+            expect(error.message).toContain("page.goto: Download is starting");
+        }
+    });
+
+    test("/geo/pub/[layername]/ows NO &layers=", async ({ page }) => {
+
+        let path = "/geo/pub/WHSE_LEGAL_ADMIN_BOUNDARIES.ABMS_COUNTIES_SP/ows"
+        let requestUrl = domain + path + noLayerQueryString;
+
+        try {
+            let response = await page.goto(requestUrl);
+            await expect(response.status()).toBe(200);
+        }
+        catch (error) {
+            expect(error.message).toContain("page.goto: Download is starting");
+        }
+    });
 
     test("/geo/pub/wms", async ({ page }) => {
 
