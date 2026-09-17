@@ -111,15 +111,20 @@ services:
 
   # Initializes shared volume ownership so GeoServer services (running as 1000:1000) can write to them
   init-volumes:
-    image: alpine:3.24.0
+    image: docker.io/curlimages/curl:latest
     user: root
     # command: chown 1000:1000 /opt/app/data_directory /data/geowebcache
+    # FIXME scripts dir does not exist in image
     command: >-
       sh -c 'mkdir -p /opt/app/data_directory/.filelocks &&
-      chown -R 1000:1000 /opt/app/data_directory /data/geowebcache'
+      chown -R 1000:1000 /opt/app/data_directory /data/geowebcache &&
+      sh /scripts/get-from-s3.sh && 
+      sh /scripts/prepare-geoserver.sh'
     volumes:
       - shared_data_directory:/opt/app/data_directory
       - geowebcache_data:/data/geowebcache
+      - ./scripts/get-from-s3.sh:/scripts/get-from-s3.sh
+      - ./scripts/prepare-geoserver.sh:/scripts/prepare-geoserver.sh
 
   # GeoServer template service configuration
   geoserver_template:
