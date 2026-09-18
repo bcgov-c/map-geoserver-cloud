@@ -113,8 +113,6 @@ services:
   init-volumes:
     image: docker.io/curlimages/curl:latest
     user: root
-    # command: chown 1000:1000 /opt/app/data_directory /data/geowebcache
-    # FIXME scripts dir does not exist in image
     command: >-
       sh -c 'mkdir -p /opt/app/data_directory/.filelocks &&
       chown -R 1000:1000 /opt/app/data_directory /data/geowebcache &&
