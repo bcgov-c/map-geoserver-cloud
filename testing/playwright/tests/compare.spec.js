@@ -16,7 +16,7 @@ test.describe("WFS GetFeature Responses", () => {
         const referenceRequestUrl = referenceHost + requestUrl;
         const testRequestUrl = testHost + requestUrl;
 
-        test(index, 
+        test(index + 1, 
             async ({ page }) => {
                 let referenceResponse = await page.goto(referenceRequestUrl);
                 const referenceJson = await referenceResponse.json();
