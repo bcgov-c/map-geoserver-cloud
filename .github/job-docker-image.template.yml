@@ -26,11 +26,11 @@ build:
     - name: Get short SHA
       if: steps.changes.outputs.BUILD == 'YES'
       id: slug
-      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+      run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
 
     - name: Timestamp
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
     - name: Login to registry
       if: steps.changes.outputs.BUILD == 'YES'
