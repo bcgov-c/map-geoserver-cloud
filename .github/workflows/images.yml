@@ -36,7 +36,7 @@ jobs:
       DOCKER_ITEM: geokml
       PREFIX: ''
     name: geokml image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -84,7 +84,7 @@ jobs:
       DOCKER_ITEM: georoot
       PREFIX: ''
     name: georoot image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -132,7 +132,7 @@ jobs:
       DOCKER_ITEM: geosld
       PREFIX: ''
     name: geosld image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -180,7 +180,7 @@ jobs:
       DOCKER_ITEM: getcaps
       PREFIX: ''
     name: getcaps image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -228,7 +228,7 @@ jobs:
       DOCKER_ITEM: gwc
       PREFIX: ''
     name: gwc image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -276,7 +276,7 @@ jobs:
       DOCKER_ITEM: wfs
       PREFIX: ''
     name: wfs image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -324,7 +324,7 @@ jobs:
       DOCKER_ITEM: wms
       PREFIX: ''
     name: wms image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -340,7 +340,7 @@ jobs:
     - id: slug
       if: steps.changes.outputs.BUILD == 'YES'
       name: Get short SHA
-      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
     - id: date
       name: Timestamp
       run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
@@ -372,7 +372,7 @@ jobs:
       DOCKER_ITEM: wms-p6spy
       PREFIX: ''
     name: wms-p6spy image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: actions/checkout@v7
     - id: changed-files
@@ -388,7 +388,7 @@ jobs:
     - id: slug
       if: steps.changes.outputs.BUILD == 'YES'
       name: Get short SHA
-      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
     - id: date
       name: Timestamp
       run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
