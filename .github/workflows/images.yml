@@ -38,9 +38,9 @@ jobs:
     name: geokml image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
@@ -86,9 +86,9 @@ jobs:
     name: georoot image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
@@ -134,9 +134,9 @@ jobs:
     name: geosld image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
@@ -182,9 +182,9 @@ jobs:
     name: getcaps image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
@@ -230,9 +230,9 @@ jobs:
     name: gwc image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
@@ -278,9 +278,9 @@ jobs:
     name: wfs image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
@@ -326,9 +326,9 @@ jobs:
     name: wms image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
@@ -374,9 +374,9 @@ jobs:
     name: wms-p6spy image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - id: changed-files
-      uses: tj-actions/changed-files@v46.0.1
+      uses: tj-actions/changed-files@v47.0.6
     - id: changes
       name: Any changes?
       run: "echo \"BUILD=${{env.BUILD_ALL}}\" >> $GITHUB_OUTPUT\nfor changed_file\
