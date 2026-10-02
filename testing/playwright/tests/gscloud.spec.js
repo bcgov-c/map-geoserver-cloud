@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import wmsMapRequests from "../fixtures/wms-map-requests.json";
+import wmsGetMapRequests from "../fixtures/wms-get-map-requests.json";
 import wmsGetCapRequests from "../fixtures/wms-get-capabilities-requests.json";
-import wfsFeatureRequests from "../fixtures/wfs-feature-requests.json";
+import wfsGetFeatureRequests from "../fixtures/wfs-get-feature-requests.json";
 
 let getLcParameterValue = function (param, searchParams) {
 
@@ -121,7 +121,7 @@ test.describe(envDescription + " routes", () => {
 
 test.describe(envDescription + " WFS GetFeature", () => {
 
-    wfsFeatureRequests.forEach((requestUrl, index) => {
+    wfsGetFeatureRequests.forEach((requestUrl, index) => {
 
         requestUrl = domain + "/" + requestUrl;
         let url = new URL(requestUrl);
@@ -153,7 +153,7 @@ test.describe(envDescription + " WFS GetFeature", () => {
 
 test.describe(envDescription + " WMS GetMap", () => {
 
-    wmsMapRequests.forEach((requestUrl, index) => {
+    wmsGetMapRequests.forEach((requestUrl, index) => {
 
         requestUrl = domain + "/" + requestUrl;
         let url = new URL(requestUrl);

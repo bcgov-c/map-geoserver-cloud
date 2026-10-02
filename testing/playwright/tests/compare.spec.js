@@ -1,8 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-import wmsMapRequests from "../fixtures/wms-map-requests.json";
 import wmsGetCapRequests from "../fixtures/wms-get-capabilities-requests.json";
-import wfsFeatureRequests from "../fixtures/wfs-feature-requests.json";
+import wfsGetFeatureRequests from "../fixtures/wfs-get-feature-requests.json";
 
 const { XMLParser } = require("fast-xml-parser");
 
@@ -11,7 +10,7 @@ const testHost = 'https://gscloud.test.api.gov.bc.ca';
 
 test.describe("WFS GetFeature Responses", () => {
 
-    wfsFeatureRequests.forEach((requestUrl, index) => {
+    wfsGetFeatureRequests.forEach((requestUrl, index) => {
 
         const referenceRequestUrl = referenceHost + requestUrl;
         const testRequestUrl = testHost + requestUrl;
