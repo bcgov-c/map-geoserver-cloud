@@ -2,8 +2,10 @@ import { test, expect } from "@playwright/test";
 
 import wmsGetCapRequests from "../fixtures/wms-get-capabilities-requests.json";
 import wfsGetFeatureRequests from "../fixtures/wfs-get-feature-requests.json";
+import wfsDescribeFeatureTypeRequests from "../fixtures/wfs-describe-feature-type-requests.json";
 
 const { XMLParser } = require("fast-xml-parser");
+// const { XSDParser } = require("xmlschema");
 
 const referenceHost = 'http://kamelos.dmz:8080';
 const testHost = 'https://gscloud.test.api.gov.bc.ca';
@@ -28,6 +30,37 @@ test.describe("WFS GetFeature Responses", () => {
                 }
                 expect(testJson.numberMatched).toEqual(referenceJson.numberMatched);
                 expect(testJson.numberReturned).toEqual(referenceJson.numberReturned);
+            }
+        );
+    });
+});
+
+test.describe("WMS DescribeFeatureType Responses", () => {
+
+    wfsDescribeFeatureTypeRequests.forEach((requestUrl, index) => {
+        const referenceRequestUrl = referenceHost + requestUrl;
+        const testRequestUrl = testHost + requestUrl;
+
+        test(index, 
+            async ({ page }) => {
+                let referenceResponse = await page.goto(referenceRequestUrl);
+                const referenceText = await referenceResponse.text();
+                // referenceSchema = xmlschema.XMLSchema(referenceText);
+                
+                let testResponse = await page.goto(testRequestUrl);
+                const testText = await testResponse.text();
+                // testSchema = xmlschema.XMLSchema(testText);
+
+                // I want to compare sequence elements between:
+                // http://kamelos.dmz:8080/geo/pub/wfs?SERVICE=WFS&REQUEST=DescribeFeatureType&VERSION=1.0.0&TYPENAME=pub:WHSE_IMAGERY_AND_BASE_MAPS.MOT_CULVERTS_SP
+                // https://gscloud.test.api.gov.bc.ca/geo/pub/wfs?SERVICE=WFS&REQUEST=DescribeFeatureType&VERSION=1.0.0&TYPENAME=pub:WHSE_IMAGERY_AND_BASE_MAPS.MOT_CULVERTS_SP
+                // expect(testSchema.elements.keys().toEqual(referenceSchema.elements.keys()));
+                
+                // This fails; "schemaLocation" differs
+                // expect(testText.length).toEqual(referenceText.length);
+
+                // Another comparison option:
+                // remove hosts from each XSD string, then compare the strings
             }
         );
     });
