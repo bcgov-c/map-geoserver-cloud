@@ -124,7 +124,7 @@ test.describe(envDescription + " WFS GetFeature", () => {
 
     wfsGetFeatureRequests.forEach((requestUrl, index) => {
 
-        requestUrl = domain + "/" + requestUrl;
+        requestUrl = domain + requestUrl;
         let url = new URL(requestUrl);
         let path = url.pathname;
         let href = url.href;
@@ -156,7 +156,7 @@ test.describe(envDescription + " WFS DescribeFeatureType", () => {
 
     wfsDescribeFeatureTypeRequests.forEach((requestUrl, index) => {
 
-        requestUrl = domain + "/" + requestUrl;
+        requestUrl = domain + requestUrl;
         let url = new URL(requestUrl);
         let path = url.pathname;
         let href = url.href;
@@ -188,7 +188,7 @@ test.describe(envDescription + " WMS GetMap", () => {
 
     wmsGetMapRequests.forEach((requestUrl, index) => {
 
-        requestUrl = domain + "/" + requestUrl;
+        requestUrl = domain + requestUrl;
         let url = new URL(requestUrl);
         let path = url.pathname;
         let layerName = getLcParameterValue("layers", url.searchParams);
@@ -233,7 +233,7 @@ test.describe(envDescription + " WMS GetCapabilities", () => {
 
     wmsGetCapRequests.forEach((requestUrl, index) => {
 
-        requestUrl = domain + "/" + requestUrl;
+        requestUrl = domain + requestUrl;
         let url = new URL(requestUrl);
         // let layerName = url.searchParams.get("LAYERS");
         let path = url.pathname;
