@@ -7,8 +7,17 @@ import wfsDescribeFeatureTypeRequests from "../fixtures/wfs-describe-feature-typ
 const { XMLParser } = require("fast-xml-parser");
 // const { XSDParser } = require("xmlschema");
 
+// Dev
+// const referenceHost = 'http://kamelos.dmz:8060';
+// const testHost = 'https://gscloud.dev.api.gov.bc.ca';
+
+// Test
 const referenceHost = 'http://kamelos.dmz:8080';
 const testHost = 'https://gscloud.test.api.gov.bc.ca';
+
+// Prod
+// const referenceHost = 'http://imai.dmz:8080';
+// const testHost = 'https://gscloud.api.gov.bc.ca';
 
 test.describe("WFS GetFeature Responses", () => {
 
