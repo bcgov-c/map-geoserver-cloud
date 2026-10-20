@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
-import wmsMapRequests from "../fixtures/wms-map-requests.json";
+import wmsGetMapRequests from "../fixtures/wms-get-map-requests.json";
 import wmsGetCapRequests from "../fixtures/wms-get-capabilities-requests.json";
-import wfsFeatureRequests from "../fixtures/wfs-feature-requests.json";
+import wfsGetFeatureRequests from "../fixtures/wfs-get-feature-requests.json";
+import wfsDescribeFeatureTypeRequests from "../fixtures/wfs-describe-feature-type-requests.json";
 
 let getLcParameterValue = function (param, searchParams) {
 
@@ -60,7 +61,7 @@ test.describe(envDescription + " routes", () => {
             await expect(response.status()).toBe(200);
         }
         catch (error) {
-            expect(error.message).toContain("page.goto: Download is starting");
+            expect(error.message).toContain("page.goto: net::ERR_ABORTED");
         }
     });
 
@@ -74,7 +75,7 @@ test.describe(envDescription + " routes", () => {
             await expect(response.status()).toBe(200);
         }
         catch (error) {
-            expect(error.message).toContain("page.goto: Download is starting");
+            expect(error.message).toContain("page.goto: net::ERR_ABORTED");
         }
     });
 
@@ -121,9 +122,9 @@ test.describe(envDescription + " routes", () => {
 
 test.describe(envDescription + " WFS GetFeature", () => {
 
-    wfsFeatureRequests.forEach((requestUrl, index) => {
+    wfsGetFeatureRequests.forEach((requestUrl, index) => {
 
-        requestUrl = domain + "/" + requestUrl;
+        requestUrl = domain + requestUrl;
         let url = new URL(requestUrl);
         let path = url.pathname;
         let href = url.href;
@@ -151,11 +152,43 @@ test.describe(envDescription + " WFS GetFeature", () => {
     });
 });
 
+test.describe(envDescription + " WFS DescribeFeatureType", () => {
+
+    wfsDescribeFeatureTypeRequests.forEach((requestUrl, index) => {
+
+        requestUrl = domain + requestUrl;
+        let url = new URL(requestUrl);
+        let path = url.pathname;
+        let href = url.href;
+
+        test(index, 
+            { 
+                annotation : [
+                    { 
+                        type: "path", 
+                        description : path
+                    },
+                    {
+                        type: "href", 
+                        description : href
+                    }
+                ]
+            },
+            async ({ page }) => {
+
+            let response = await page.goto(requestUrl);
+            expect(response.status()).toBe(200);
+            let contentType = response.headers()["content-type"];
+            expect(contentType).toContain("text/xml; charset=UTF-8");
+        });
+    });
+});
+
 test.describe(envDescription + " WMS GetMap", () => {
 
-    wmsMapRequests.forEach((requestUrl, index) => {
+    wmsGetMapRequests.forEach((requestUrl, index) => {
 
-        requestUrl = domain + "/" + requestUrl;
+        requestUrl = domain + requestUrl;
         let url = new URL(requestUrl);
         let path = url.pathname;
         let layerName = getLcParameterValue("layers", url.searchParams);
@@ -200,7 +233,7 @@ test.describe(envDescription + " WMS GetCapabilities", () => {
 
     wmsGetCapRequests.forEach((requestUrl, index) => {
 
-        requestUrl = domain + "/" + requestUrl;
+        requestUrl = domain + requestUrl;
         let url = new URL(requestUrl);
         // let layerName = url.searchParams.get("LAYERS");
         let path = url.pathname;

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import cachedMapRequests from "../fixtures/wms-map-cached-layer-requests.json";
+import cachedGetMapRequests from "../fixtures/wms-get-map-cached-layer-requests.json";
 
 let getLcParameterValue = function (param, searchParams) {
 
@@ -210,7 +210,7 @@ test.describe("GWC == GSC images", () => {
 
 test.describe("&tiled=true query param behaviour", () => {
 
-    cachedMapRequests.forEach((requestUrl, index) => {
+    cachedGetMapRequests.forEach((requestUrl, index) => {
 
         requestUrl = domain + "/" + requestUrl;
         let url = new URL(requestUrl);
@@ -261,7 +261,7 @@ test.describe("&tiled=true query param behaviour", () => {
         });
     });
 
-    cachedMapRequests.forEach((requestUrl, index) => {
+    cachedGetMapRequests.forEach((requestUrl, index) => {
 
         requestUrl = domain + "/" + requestUrl;
         let url = new URL(requestUrl);
@@ -317,7 +317,7 @@ test.describe("&tiled=true query param behaviour", () => {
 
 test.describe("No cache headers if request is routed to Geoserver", () => {
 
-    cachedMapRequests.forEach((requestUrl, index) => {
+    cachedGetMapRequests.forEach((requestUrl, index) => {
 
         requestUrl = domain + "/" + requestUrl;
         let url = new URL(requestUrl);

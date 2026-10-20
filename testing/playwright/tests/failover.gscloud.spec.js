@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import requests from '../fixtures/wms-map-requests.json';
-import gcRequests from "../fixtures/wms-get-capabilities-requests.json";
+import getMapRequests from '../fixtures/wms-get-map-requests.json';
+import getCapRequests from "../fixtures/wms-get-capabilities-requests.json";
 
 const productionDomain = "https://openmaps.gov.bc.ca";
 const failoverDomain = "https://geoserver-ec38a0-prod.apps.golddr.devops.gov.bc.ca"
@@ -15,7 +15,7 @@ test.describe("WMS Map Gold == GoldDR", () => {
 
     // TODO: Might want to clear out the directory, so can test each.
 
-    requests.forEach((requestUrl, index) => {
+    getMapRequests.forEach((requestUrl, index) => {
 
         let prodRequestUrl = productionDomain + "/" + requestUrl;
         let failoverRequestUrl = failoverDomain + "/" + requestUrl;
@@ -39,7 +39,7 @@ test.describe("WMS Map Gold == GoldDR", () => {
 
 test.describe("WMS GetCapabilities Gold == GoldDR", () => {
 
-    gcRequests.forEach((requestUrl, index) => {
+    getCapRequests.forEach((requestUrl, index) => {
 
         let prodRequestUrl = productionDomain + "/" + requestUrl;
         let failoverRequestUrl = failoverDomain + "/" + requestUrl;
