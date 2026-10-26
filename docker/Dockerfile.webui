@@ -1,1 +1,1 @@
-FROM geoservercloud/geoserver-cloud-webui:1.9-SNAPSHOT
+FROM geoservercloud/geoserver-cloud-webui:2.26.2.0
