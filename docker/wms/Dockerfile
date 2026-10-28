@@ -4,6 +4,6 @@ WORKDIR /app
 COPY . .
 RUN mvn package
 
-FROM geoservercloud/geoserver-cloud-wms:1.9-SNAPSHOT
+FROM geoservercloud/geoserver-cloud-wms:2.26.2.0
 
 COPY --from=BUILD /app/target/gs-wms-bcgov-2.26.0.jar /opt/app/bin/BOOT-INF/lib/.

@@ -19,7 +19,7 @@ RUN mvn package
 WORKDIR /gsbuild/geoserver/src/restconfig
 RUN mvn package
 
-FROM geoservercloud/geoserver-cloud-wfs:1.9-SNAPSHOT
+FROM geoservercloud/geoserver-cloud-wfs:2.26.2.0
 
 COPY --from=BUILD /gsbuild/geoserver/src/rest/target/gs-rest-2.25.3.jar /opt/app/bin/BOOT-INF/lib/.
 COPY --from=BUILD /gsbuild/geoserver/src/restconfig/target/gs-restconfig-2.25.3.jar /opt/app/bin/BOOT-INF/lib/.
